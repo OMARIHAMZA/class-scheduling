@@ -1,0 +1,113 @@
+{
+  "courses": [
+    {
+      "course_name": "Software Engineering 1",
+      "lecturer_name": "Saeed Abo Trab"
+    },
+    {
+      "course_name": "Economy",
+      "lecturer_name": "Nawras Watfeh"
+    },
+    {
+      "course_name": "Compilers",
+      "lecturer_name": "Salah Dawahji"
+    },
+    {
+      "course_name": "Intelligent Search Algorithms",
+      "lecturer_name": "Bassel Al Khatib"
+    },
+    {
+      "course_name": "Operating Systems 1",
+      "lecturer_name": "Wassim Ahmad"
+    },
+    {
+      "course_name": "Database 2",
+      "lecturer_name": "Madlin Abood"
+    }
+  ],
+  "lecturers": [
+    {
+      "name": "Saeed Abo Trab",
+      "periods": [
+        {
+          "day_name": "sunday",
+          "start_time": "8:00",
+          "end_time": "2:00"
+        },
+        {
+          "day_name": "monday",
+          "start_time": "8:00",
+          "end_time": "12:00"
+        }
+      ]
+    },
+    {
+      "name": "Nawras Watfeh",
+      "periods": [
+        {
+          "day_name": "sunday",
+          "start_time": "10:00",
+          "end_time": "2:00"
+        },
+        {
+          "day_name": "thursday",
+          "start_time": "8:00",
+          "end_time": "12:00"
+        }
+      ]
+    },
+    {
+      "name": "Salah Dawahji",
+      "periods": [
+        {
+          "day_name": "monday",
+          "start_time": "10:00",
+          "end_time": "2:00"
+        },
+        {
+          "day_name": "wednesday",
+          "start_time": "8:00",
+          "end_time": "12:00"
+        }
+      ]
+    },
+    {
+      "name": "Bassel Al Khatib",
+      "periods": [
+        {
+          "day_name": "monday",
+          "start_time": "10:00",
+          "end_time": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "Wassim Ahmad",
+      "periods": [
+        {
+          "day_name": "wednesday",
+          "start_time": "10:00",
+          "end_time": "2:00"
+        },
+        {
+          "day_name": "tuesday",
+          "start_time": "10:00",
+          "end_time": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "Madlin Abood",
+      "periods": [
+        {
+          "day_name": "wednesday",
+          "start_time": "8:00",
+          "end_time": "12:00"
+        }
+      ]
+    }
+  ],
+  "stages": [
+
+  ]
+}
