@@ -15,6 +15,9 @@ public class Lecture {
     public Lecture(Lecture lecture) {
         this.courseName = lecture.courseName;
         this.lecturer = lecture.lecturer;
+        this.stage = lecture.stage;
+        this.startTime = lecture.startTime;
+        this.endTime = lecture.endTime;
     }
 
     public String getCourseName() {

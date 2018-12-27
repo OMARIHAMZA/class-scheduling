@@ -3,9 +3,9 @@ package models;
 public class Period {
 
     private String dayName;
-    private String startTime, endTime;
+    private float startTime, endTime;
 
-    public Period(String dayName, String startTime, String endTime) {
+    public Period(String dayName, float startTime, float endTime) {
         this.dayName = dayName;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -19,19 +19,19 @@ public class Period {
         this.dayName = dayName;
     }
 
-    public String getStartTime() {
+    public float getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(float startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public float getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(float endTime) {
         this.endTime = endTime;
     }
 }

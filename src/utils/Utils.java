@@ -15,7 +15,7 @@ public class Utils {
 
             JSONObject jsonObject = new JSONObject(new Scanner(new FileInputStream(filePath)).useDelimiter("\\Z").next());
             ArrayList<Lecturer> lecturers = new ArrayList<>();
-            JSONArray lecturerJSONArray = jsonObject.getJSONArray("lecturers");
+            JSONArray lecturerJSONArray = jsonObject.getJSONArray("professors");
             for (int i = 0; i < lecturerJSONArray.length(); i++) {
                 JSONObject currentLecturer = lecturerJSONArray.getJSONObject(i);
                 JSONArray periodsJSONArray = currentLecturer.getJSONArray("periods");
@@ -23,8 +23,8 @@ public class Utils {
                 for (int j = 0; j < periodsJSONArray.length(); j++) {
                     JSONObject currentPeriod = periodsJSONArray.getJSONObject(j);
                     periods.add(new Period(currentPeriod.getString("day_name"),
-                            currentPeriod.getString("start_time"),
-                            currentPeriod.getString("end_time")));
+                            ((float) currentPeriod.getInt("start_time")),
+                            ((float) currentPeriod.getInt("end_time"))));
                 }
                 lecturers.add(new Lecturer(currentLecturer.getString("name"), periods));
             }

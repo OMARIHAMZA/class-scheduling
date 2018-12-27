@@ -12,6 +12,11 @@ public class Day {
         this.lectures = lectures;
     }
 
+    public Day(String dayName) {
+        this.dayName = dayName;
+        lectures = new ArrayList<>();
+    }
+
     public String getDayName() {
         return dayName;
     }

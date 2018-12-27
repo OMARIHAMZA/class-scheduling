@@ -57,13 +57,13 @@
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": "8:00",
-          "end_time": "2:00"
+          "start_time": 8,
+          "end_time": 14
         },
         {
           "day_name": "monday",
-          "start_time": "8:00",
-          "end_time": "12:00"
+          "start_time": 8,
+          "end_time": 12
         }
       ]
     },
@@ -72,13 +72,13 @@
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": "10:00",
-          "end_time": "2:00"
+          "start_time": 10,
+          "end_time": 14
         },
         {
           "day_name": "thursday",
-          "start_time": "8:00",
-          "end_time": "12:00"
+          "start_time": 8,
+          "end_time": 12
         }
       ]
     },
@@ -87,13 +87,13 @@
       "periods": [
         {
           "day_name": "monday",
-          "start_time": "10:00",
-          "end_time": "2:00"
+          "start_time": 10,
+          "end_time": 14
         },
         {
           "day_name": "wednesday",
-          "start_time": "8:00",
-          "end_time": "12:00"
+          "start_time": 8,
+          "end_time": 12
         }
       ]
     },
@@ -102,8 +102,8 @@
       "periods": [
         {
           "day_name": "monday",
-          "start_time": "10:00",
-          "end_time": "2:00"
+          "start_time": 10,
+          "end_time": 14
         }
       ]
     },
@@ -112,13 +112,13 @@
       "periods": [
         {
           "day_name": "wednesday",
-          "start_time": "10:00",
-          "end_time": "2:00"
+          "start_time": 10,
+          "end_time": 14
         },
         {
           "day_name": "tuesday",
-          "start_time": "10:00",
-          "end_time": "2:00"
+          "start_time": 10,
+          "end_time": 14
         }
       ]
     },
@@ -127,8 +127,8 @@
       "periods": [
         {
           "day_name": "wednesday",
-          "start_time": "8:00",
-          "end_time": "12:00"
+          "start_time": 8,
+          "end_time": 12
         }
       ]
     }
@@ -146,8 +146,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 12
         }
       ]
     },
@@ -163,13 +163,13 @@
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": "10:00",
-          "end_time": "2:00"
+          "start_time": 10,
+          "end_time": 14
         },
         {
           "day_name": "thursday",
-          "start_time": "8:00",
-          "end_time": "12:00"
+          "start_time": 8,
+          "end_time": 12
         }
       ]
     },
@@ -185,8 +185,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 16
         }
       ]
     },
@@ -200,8 +200,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 16
         }
       ]
     },
@@ -215,8 +215,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 16
         }
       ]
     },
@@ -230,8 +230,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 16
         }
       ]
     },
@@ -245,8 +245,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 16
         }
       ]
     },
@@ -260,8 +260,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 16
         }
       ]
     },
@@ -275,8 +275,8 @@
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": "8:00",
-          "end_time": "4:00"
+          "start_time": 8,
+          "end_time": 16
         }
       ]
     }
