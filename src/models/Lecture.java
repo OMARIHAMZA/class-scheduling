@@ -3,18 +3,28 @@ package models;
 public class Lecture {
 
     private String courseName;
-    private Lecturer lecturer;
+    private Professor professor;
+    private Teacher teacher;
+    private boolean isPractical = false;
     private Stage stage;
     private float startTime, endTime;
 
-    public Lecture(String courseName, Lecturer lecturer) {
+    public Lecture(String courseName, Professor professor) {
         this.courseName = courseName;
-        this.lecturer = lecturer;
+        this.professor = professor;
+    }
+
+    public Lecture(String courseName, Teacher teacher) {
+        this.courseName = courseName;
+        this.teacher = teacher;
+        this.isPractical = true;
     }
 
     public Lecture(Lecture lecture) {
         this.courseName = lecture.courseName;
-        this.lecturer = lecture.lecturer;
+        this.professor = lecture.professor;
+        this.teacher = lecture.teacher;
+        this.isPractical = lecture.isPractical;
         this.stage = lecture.stage;
         this.startTime = lecture.startTime;
         this.endTime = lecture.endTime;
@@ -28,12 +38,12 @@ public class Lecture {
         this.courseName = courseName;
     }
 
-    public Lecturer getLecturer() {
-        return lecturer;
+    public Professor getProfessor() {
+        return professor;
     }
 
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     public float getStartTime() {
@@ -59,4 +69,22 @@ public class Lecture {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public boolean isPractical() {
+        return isPractical;
+    }
+
+    public void setPractical(boolean practical) {
+        isPractical = practical;
+    }
+
+
 }

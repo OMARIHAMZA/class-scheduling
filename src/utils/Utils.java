@@ -14,7 +14,7 @@ public class Utils {
         try {
 
             JSONObject jsonObject = new JSONObject(new Scanner(new FileInputStream(filePath)).useDelimiter("\\Z").next());
-            ArrayList<Lecturer> lecturers = new ArrayList<>();
+            ArrayList<Professor> professors = new ArrayList<>();
             JSONArray lecturerJSONArray = jsonObject.getJSONArray("professors");
             for (int i = 0; i < lecturerJSONArray.length(); i++) {
                 JSONObject currentLecturer = lecturerJSONArray.getJSONObject(i);
@@ -26,25 +26,60 @@ public class Utils {
                             ((float) currentPeriod.getInt("start_time")),
                             ((float) currentPeriod.getInt("end_time"))));
                 }
-                lecturers.add(new Lecturer(currentLecturer.getString("name"), periods));
+                professors.add(new Professor(currentLecturer.getString("name"), periods));
+            }
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            JSONArray teachersJSONArray = jsonObject.getJSONArray("teachers");
+            for (int i = 0; i < teachersJSONArray.length(); i++) {
+                JSONObject currentTeacher = teachersJSONArray.getJSONObject(i);
+                JSONArray periodsJSONArray = currentTeacher.getJSONArray("periods");
+                ArrayList<Period> periods = new ArrayList<>();
+                for (int j = 0; j < periodsJSONArray.length(); j++) {
+                    JSONObject currentPeriod = periodsJSONArray.getJSONObject(j);
+                    periods.add(new Period(currentPeriod.getString("day_name"),
+                            ((float) currentPeriod.getInt("start_time")),
+                            ((float) currentPeriod.getInt("end_time"))));
+                }
+                ArrayList<String> groups = new ArrayList<>();
+                JSONArray groupsJSONArray = currentTeacher.getJSONArray("groups");
+                for (int j = 0; j < groupsJSONArray.length(); j++) {
+                    groups.add(groupsJSONArray.getString(j));
+                }
+                teachers.add(new Teacher(currentTeacher.getString("name"),
+                        currentTeacher.getString("course_name"),
+                        periods,
+                        groups
+                ));
             }
 
             ArrayList<Lecture> lectures = new ArrayList<>();
             JSONArray lecturesJSONArray = jsonObject.getJSONArray("courses");
             for (int i = 0; i < lecturesJSONArray.length(); i++) {
                 JSONObject currentLecture = lecturesJSONArray.getJSONObject(i);
-                Lecturer currentLecturer = null;
+                Professor currentProfessor = null;
                 String currentLecturerName = currentLecture.getString("lecturer_name");
-                for (Lecturer lecturer : lecturers) {
-                    if (lecturer.getName().equalsIgnoreCase(currentLecturerName)) {
-                        currentLecturer = lecturer;
+                for (Professor professor : professors) {
+                    if (professor.getName().equalsIgnoreCase(currentLecturerName)) {
+                        currentProfessor = professor;
                         break;
                     }
                 }
-                if (currentLecturer == null) {
-                    throw new Exception("Lecturer: " + currentLecturerName + " not found! ");
+                if (currentProfessor == null) {
+                    throw new Exception("Professor: " + currentLecturerName + " not found! ");
                 }
-                lectures.add(new Lecture(currentLecture.getString("course_name"), currentLecturer));
+                lectures.add(new Lecture(currentLecture.getString("course_name"), currentProfessor));
+            }
+
+            ArrayList<Lecture> practicalLectures = new ArrayList<>();
+            JSONArray practicalLecturesJSONArray = jsonObject.getJSONArray("practical_courses");
+            for (int i = 0; i < practicalLecturesJSONArray.length(); i++) {
+                JSONObject currentLecture = practicalLecturesJSONArray.getJSONObject(i);
+                for (Teacher teacher : teachers) {
+                    if (teacher.getCourseName().equalsIgnoreCase(currentLecture.getString("name"))) {
+                        practicalLectures.add(new Lecture(currentLecture.getString("name"), teacher));
+                    }
+                }
             }
 
             ArrayList<Stage> stages = new ArrayList<>();
@@ -53,7 +88,7 @@ public class Utils {
                 stages.add(new Stage(stagesJSONArray.getJSONObject(i).getString("name"), false));
             }
 
-            return new Resources(lectures, lecturers, stages);
+            return new Resources(lectures, practicalLectures, professors, stages);
 
 
         } catch (Exception e) {

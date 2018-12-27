@@ -74,8 +74,13 @@ public class Schedule {
         return cost;
     }
 
-    private boolean isDoctorAvailable(Lecture currentLecture, int currentDay, int currentPosition) {
-        ArrayList<Period> periods = currentLecture.getLecturer().getAvailabilityPeriods();
+    private boolean isLecturerAvailable(Lecture currentLecture, int currentDay, int currentPosition, boolean isPractical) {
+        ArrayList<Period> periods;
+        if (isPractical) {
+            periods = currentLecture.getTeacher().getAvailabilityPeriods();
+        } else {
+            periods = currentLecture.getProfessor().getAvailabilityPeriods();
+        }
         for (Period period : periods) {
             if (period.getDayName().equalsIgnoreCase(days.get(currentDay).getDayName())) {
                 if (period.getStartTime() <= (float) (8 + (currentPosition * 2))
@@ -92,20 +97,41 @@ public class Schedule {
     }
 
     private Lecture getNextLecture(int currentDay, int currentPosition, Schedule schedule) {
-        for (Lecture lecture : resources.getLectures()) {
-            if (!containsLecture(schedule, lecture)
-                    && isDoctorAvailable(lecture, currentDay, currentPosition)) {
+        for (Lecture lecture : resources.getTheoreticalLectures()) {
+            if (!containsThoeriticalLecture(schedule, lecture)
+                    && isLecturerAvailable(lecture, currentDay, currentPosition, false)) {
+                return lecture;
+            }
+        }
+        for (Lecture lecture : resources.getPracticalLectures()) {
+            if (!containsPracticalLecture(schedule, lecture)
+                    && isLecturerAvailable(lecture, currentDay, currentPosition, true)) {
                 return lecture;
             }
         }
         return null;
     }
 
-    private boolean containsLecture(Schedule schedule, Lecture lecture) {
+    private boolean containsThoeriticalLecture(Schedule schedule, Lecture lecture) {
         for (Day day : schedule.getDays()) {
             for (int i = 0; i < day.getLectures().size(); i++) {
                 Lecture mLecture = day.getLectures().get(i);
-                if (mLecture.getCourseName().equalsIgnoreCase(lecture.getCourseName())) {
+                if (mLecture.isPractical() == lecture.isPractical()
+                        && mLecture.getCourseName().equalsIgnoreCase(lecture.getCourseName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean containsPracticalLecture(Schedule schedule, Lecture lecture) {
+        for (Day day : schedule.getDays()) {
+            for (int i = 0; i < day.getLectures().size(); i++) {
+                Lecture mLecture = day.getLectures().get(i);
+                if (mLecture.isPractical() == lecture.isPractical()
+                        && mLecture.getCourseName().equalsIgnoreCase(lecture.getCourseName())
+                        && mLecture.getTeacher().getName().equalsIgnoreCase(lecture.getTeacher().getName())) {
                     return true;
                 }
             }
@@ -118,7 +144,7 @@ public class Schedule {
     }
 
     private Lecture getLectureByPosition(int position) {
-        return resources.getLectures().get(position);
+        return resources.getTheoreticalLectures().get(position);
     }
 
     public Resources getResources() {

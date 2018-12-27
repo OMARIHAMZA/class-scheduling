@@ -12,7 +12,11 @@ public class Main {
             System.out.println("-------------");
             System.out.println(day.getDayName());
             for (Lecture lecture : day.getLectures()) {
-                System.out.print(lecture.getCourseName() + " * " + lecture.getLecturer().getName() + "\n");
+                if (lecture.isPractical()) {
+                    System.out.print(lecture.getCourseName() + " _ " + lecture.getTeacher().getName() + "\n");
+                } else {
+                    System.out.print(lecture.getCourseName() + " * " + lecture.getProfessor().getName() + "\n");
+                }
             }
             System.out.println();
         }

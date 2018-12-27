@@ -2,12 +2,12 @@ package models;
 
 import java.util.ArrayList;
 
-public class Lecturer {
+public class Professor {
 
     private String name;
     private ArrayList<Period> availabilityPeriods;
 
-    public Lecturer(String name, ArrayList<Period> availabilityPeriods) {
+    public Professor(String name, ArrayList<Period> availabilityPeriods) {
         this.name = name;
         this.availabilityPeriods = availabilityPeriods;
     }

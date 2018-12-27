@@ -175,7 +175,7 @@
     },
     {
       "name": "Omar Ibrahim",
-      "course": "Compilers",
+      "course_name": "Compilers",
       "groups": [
         "1",
         "2",
@@ -192,7 +192,7 @@
     },
     {
       "name": "Ahmad Hussien",
-      "course": "Intelligent Search Algorithms",
+      "course_name": "Intelligent Search Algorithms",
       "groups": [
         "1",
         "3"
@@ -207,7 +207,7 @@
     },
     {
       "name": "Islam Khelan",
-      "course": "Intelligent Search Algorithms",
+      "course_name": "Intelligent Search Algorithms",
       "groups": [
         "2",
         "4"
@@ -222,14 +222,14 @@
     },
     {
       "name": "Boushra Dawood",
-      "course": "Operating Systems 1",
+      "course_name": "Operating Systems 1",
       "groups": [
         "1",
         "3"
       ],
       "periods": [
         {
-          "day_name": "tuesday",
+          "day_name": "thursday",
           "start_time": 8,
           "end_time": 16
         }
@@ -237,14 +237,14 @@
     },
     {
       "name": "Safaa Kiwan",
-      "course": "Operating Systems 1",
+      "course_name": "Operating Systems 1",
       "groups": [
         "2",
         "4"
       ],
       "periods": [
         {
-          "day_name": "tuesday",
+          "day_name": "thursday",
           "start_time": 8,
           "end_time": 16
         }
@@ -252,14 +252,14 @@
     },
     {
       "name": "Rawan Koroni",
-      "course": "Database 2",
+      "course_name": "Database 2",
       "groups": [
         "1",
         "3"
       ],
       "periods": [
         {
-          "day_name": "tuesday",
+          "day_name": "wednesday",
           "start_time": 8,
           "end_time": 16
         }
@@ -267,14 +267,14 @@
     },
     {
       "name": "Abdul Badee Morad",
-      "course": "Database 2",
+      "course_name": "Database 2",
       "groups": [
         "2",
         "4"
       ],
       "periods": [
         {
-          "day_name": "tuesday",
+          "day_name": "wednesday",
           "start_time": 8,
           "end_time": 16
         }
