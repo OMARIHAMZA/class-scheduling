@@ -1,20 +1,16 @@
 package utils;
 
-import models.Lecture;
-import models.Lecturer;
-import models.Period;
+import models.*;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utils {
 
-    public static void readDataFromFile(String filePath) {
+    public static Resources readDataFromFile(String filePath) {
         try {
 
             JSONObject jsonObject = new JSONObject(new Scanner(new FileInputStream(filePath)).useDelimiter("\\Z").next());
@@ -51,12 +47,22 @@ public class Utils {
                 lectures.add(new Lecture(currentLecture.getString("course_name"), currentLecturer));
             }
 
+            ArrayList<Stage> stages = new ArrayList<>();
+            JSONArray stagesJSONArray = jsonObject.getJSONArray("stages");
+            for (int i = 0; i < stagesJSONArray.length(); i++) {
+                stages.add(new Stage(stagesJSONArray.getJSONObject(i).getString("name"), false));
+            }
+
+            return new Resources(lectures, lecturers, stages);
 
 
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getMessage());
         }
+
+        return null;
+
     }
 
 }

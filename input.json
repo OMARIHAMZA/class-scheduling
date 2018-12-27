@@ -25,7 +25,33 @@
       "lecturer_name": "Madlin Abood"
     }
   ],
-  "lecturers": [
+  "groups": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "practical_courses": [
+    {
+      "name": "Software Engineering 1"
+    },
+    {
+      "name": "Economy"
+    },
+    {
+      "name": "Compilers"
+    },
+    {
+      "name": "Intelligent Search Algorithms"
+    },
+    {
+      "name": "Operating Systems 1"
+    },
+    {
+      "name": "Database 2"
+    }
+  ],
+  "professors": [
     {
       "name": "Saeed Abo Trab",
       "periods": [
@@ -107,7 +133,180 @@
       ]
     }
   ],
+  "teachers": [
+    {
+      "name": "Maher Al Sarem",
+      "course_name": "Software Engineering 1",
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "Nawras Watfeh",
+      "course_name": "Economy",
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "periods": [
+        {
+          "day_name": "sunday",
+          "start_time": "10:00",
+          "end_time": "2:00"
+        },
+        {
+          "day_name": "thursday",
+          "start_time": "8:00",
+          "end_time": "12:00"
+        }
+      ]
+    },
+    {
+      "name": "Omar Ibrahim",
+      "course": "Compilers",
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "Ahmad Hussien",
+      "course": "Intelligent Search Algorithms",
+      "groups": [
+        "1",
+        "3"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "Islam Khelan",
+      "course": "Intelligent Search Algorithms",
+      "groups": [
+        "2",
+        "4"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "Boushra Dawood",
+      "course": "Operating Systems 1",
+      "groups": [
+        "1",
+        "3"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "Safaa Kiwan",
+      "course": "Operating Systems 1",
+      "groups": [
+        "2",
+        "4"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "Rawan Koroni",
+      "course": "Database 2",
+      "groups": [
+        "1",
+        "3"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "Abdul Badee Morad",
+      "course": "Database 2",
+      "groups": [
+        "2",
+        "4"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": "8:00",
+          "end_time": "4:00"
+        }
+      ]
+    }
+  ],
   "stages": [
-
+    {
+      "name": "12"
+    },
+    {
+      "name": "16"
+    },
+    {
+      "name": "23"
+    },
+    {
+      "name": "25"
+    }
+  ],
+  "labs": [
+    {
+      "name": "2E"
+    },
+    {
+      "name": "2A"
+    },
+    {
+      "name": "2D"
+    },
+    {
+      "name": "2L"
+    }
   ]
 }

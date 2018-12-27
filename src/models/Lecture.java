@@ -4,11 +4,17 @@ public class Lecture {
 
     private String courseName;
     private Lecturer lecturer;
-    private int starTime, endTime;
+    private Stage stage;
+    private float startTime, endTime;
 
     public Lecture(String courseName, Lecturer lecturer) {
         this.courseName = courseName;
         this.lecturer = lecturer;
+    }
+
+    public Lecture(Lecture lecture) {
+        this.courseName = lecture.courseName;
+        this.lecturer = lecture.lecturer;
     }
 
     public String getCourseName() {
@@ -27,19 +33,27 @@ public class Lecture {
         this.lecturer = lecturer;
     }
 
-    public int getStarTime() {
-        return starTime;
+    public float getStartTime() {
+        return startTime;
     }
 
-    public void setStarTime(int starTime) {
-        this.starTime = starTime;
+    public void setStartTime(float startTime) {
+        this.startTime = startTime;
     }
 
-    public int getEndTime() {
+    public float getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(float endTime) {
         this.endTime = endTime;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }
