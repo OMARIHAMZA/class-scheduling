@@ -35,11 +35,7 @@ public class Schedule implements Comparable<Schedule> {
                     tempLecture.setStartTime(8 + (currentPosition * 2));
                     tempLecture.setEndTime(tempLecture.getStartTime() + 2);
                     tempLecture.setStage(getNextStage(currentSchedule, tempLecture.isPractical()));
-                    if (currentPosition < currentSchedule.getDays().get(currentDay).getLectures().size()) {
-                        currentSchedule.getDays().get(currentDay).getLectures().set(currentPosition, tempLecture);
-                    } else {
-                        currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
-                    }
+                    currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
                     schedules.add(currentSchedule);
                 }
             }
@@ -91,19 +87,6 @@ public class Schedule implements Comparable<Schedule> {
             return -1;
         }
 
-        try {
-            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentPosition);
-            int startTime = 8 + (currentPosition * 2);
-            int endTime = startTime + 2;
-            if ((currentLecture.getStartTime() < endTime
-                    && currentLecture.getStartTime() > startTime)
-                    || (currentLecture.getEndTime() > startTime
-                    && currentLecture.getEndTime() < endTime)) {
-                return -1;
-            }
-        } catch (Exception ignored) {
-
-        }
 
         for (Day day : currentSchedule.days) {
             for (Lecture oldLecture : day.getLectures()) {
@@ -125,7 +108,49 @@ public class Schedule implements Comparable<Schedule> {
             }
         }
 
+        if (checkTimeConflict(currentSchedule, newLecture, currentDay, currentPosition)) return -1;
+
         return cost;
+    }
+
+    private boolean checkTimeConflict(Schedule currentSchedule, Lecture newLecture, int currentDay, int currentPosition) {
+        try {
+            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
+            int startTime = 8 + (currentPosition * 2);
+            int endTime = startTime + 2;
+            if (currentDay == 4) {
+                System.out.println("FUCK");
+            }
+            if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
+                    && (currentLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
+                    || currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup()))) {
+                if ((currentLecture.getStartTime() < endTime
+                        && currentLecture.getStartTime() >= startTime)
+                        || (currentLecture.getEndTime() > startTime
+                        && currentLecture.getEndTime() <= endTime)) {
+                    return true;
+                }
+            } else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
+                if ((currentLecture.getStartTime() < endTime
+                        && currentLecture.getStartTime() >= startTime)
+                        || (currentLecture.getEndTime() > startTime
+                        && currentLecture.getEndTime() <= endTime)) {
+                    return true;
+                }
+            } else if (currentLecture.isPractical() != newLecture.isPractical()) {
+                if ((currentLecture.getStartTime() < endTime
+                        && currentLecture.getStartTime() >= startTime)
+                        || (currentLecture.getEndTime() > startTime
+                        && currentLecture.getEndTime() <= endTime)) {
+                    return true;
+                }
+            }
+
+        } catch (Exception ignored) {
+
+        }
+
+        return false;
     }
 
     private boolean isLecturerAvailable(Lecture currentLecture, int currentDay, int currentPosition, boolean isPractical) {

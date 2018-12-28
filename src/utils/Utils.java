@@ -92,7 +92,7 @@ public class Utils {
             }
 
 
-//            lectures.addAll(practicalLectures);
+            lectures.addAll(practicalLectures);
 
             return new Resources(lectures, professors, stages);
 
