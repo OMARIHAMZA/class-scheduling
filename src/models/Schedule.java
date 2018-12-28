@@ -123,17 +123,10 @@ public class Schedule implements Comparable<Schedule> {
                 //            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
                 int startTime = 8 + (currentPosition * 2);
                 int endTime = startTime + 2;
-                if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
-                        && (currentLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
-                        || currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup()))) {
 
-                    if ((currentLecture.getStartTime() < endTime
-                            && currentLecture.getStartTime() >= startTime)
-                            || (currentLecture.getEndTime() > startTime
-                            && currentLecture.getEndTime() <= endTime)) {
-                        return true;
-                    }
-                } else if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()) {
+
+                if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
+                    &&(!currentLecture.getTeacher().isInLab()||!newLecture.getTeacher().isInLab())) {
                     if (!currentLecture.getTeacher().isInLab()) {
                         String labGroup1 = "3", labGroup2 = "4";
                         if (currentLecture.getGroup().equalsIgnoreCase("1")) {
@@ -164,7 +157,20 @@ public class Schedule implements Comparable<Schedule> {
                             }
                         }
                     }
-                } else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
+                }
+
+                else if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
+                        && (currentLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
+                        || currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup()))) {
+
+                    if ((currentLecture.getStartTime() < endTime
+                            && currentLecture.getStartTime() >= startTime)
+                            || (currentLecture.getEndTime() > startTime
+                            && currentLecture.getEndTime() <= endTime)) {
+                        return true;
+                    }
+                }
+                else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
                     if ((currentLecture.getStartTime() < endTime
                             && currentLecture.getStartTime() >= startTime)
                             || (currentLecture.getEndTime() > startTime
