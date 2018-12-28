@@ -40,7 +40,7 @@ public class Schedule {
                 Lecture tempLecture = new Lecture(mLecture);
                 tempLecture.setStartTime(8 + (currentPosititon * 2));
                 tempLecture.setEndTime(tempLecture.getStartTime() + 2);
-                tempLecture.setStage(getNextStage(currentSchedule));
+                tempLecture.setStage(getNextStage(currentSchedule, tempLecture.isPractical()));
                 currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
                 currentPosititon += 1;
                 if (currentSchedule.getDays().get(currentDay).getLectures().size() == 4) {
@@ -64,6 +64,19 @@ public class Schedule {
         return generateSchedule(this, 0, 0);
     }
 
+    private boolean lectureExists(Lecture currentLecture, int currentDay, int currentPosition) {
+        if (!currentLecture.isPractical()) return true;
+        Day mDay = days.get(currentDay);
+        for (Lecture lecture : mDay.getLectures()) {
+            if (lecture.getStartTime() == 8 + (currentPosition * 2)
+                    && lecture.getEndTime() == 10 + (currentPosition * 2)
+                    && !currentLecture.getTeacher().getName().equalsIgnoreCase(lecture.getTeacher().getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private int calculateCost(Schedule currentSchedule, Lecture currentLecture, int currentDay, int currentPosition) {
         int cost = 0;
 
@@ -82,17 +95,22 @@ public class Schedule {
             periods = currentLecture.getProfessor().getAvailabilityPeriods();
         }
         for (Period period : periods) {
-            if (period.getDayName().equalsIgnoreCase(days.get(currentDay).getDayName())) {
-                if (period.getStartTime() <= (float) (8 + (currentPosition * 2))
-                        && period.getEndTime() >= (10 + (currentPosition * 2))) {
-                    return true;
+            try {
+                if (period.getDayName().equalsIgnoreCase(days.get(currentDay).getDayName())) {
+                    if (period.getStartTime() <= (float) (8 + (currentPosition * 2))
+                            && period.getEndTime() >= (10 + (currentPosition * 2))) {
+                        return true;
+                    }
                 }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(currentDay + "_____________");
+                return false;
             }
         }
         return false;
     }
 
-    private Stage getNextStage(Schedule schedule) {
+    private Stage getNextStage(Schedule schedule, boolean isPractical) {
         return resources.getStages().get(0);
     }
 
@@ -130,6 +148,7 @@ public class Schedule {
             for (int i = 0; i < day.getLectures().size(); i++) {
                 Lecture mLecture = day.getLectures().get(i);
                 if (mLecture.isPractical() == lecture.isPractical()
+                        && mLecture.getGroup().equalsIgnoreCase(lecture.getGroup())
                         && mLecture.getCourseName().equalsIgnoreCase(lecture.getCourseName())
                         && mLecture.getTeacher().getName().equalsIgnoreCase(lecture.getTeacher().getName())) {
                     return true;

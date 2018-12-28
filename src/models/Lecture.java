@@ -5,6 +5,7 @@ public class Lecture {
     private String courseName;
     private Professor professor;
     private Teacher teacher;
+    private String group;
     private boolean isPractical = false;
     private Stage stage;
     private float startTime, endTime;
@@ -14,16 +15,18 @@ public class Lecture {
         this.professor = professor;
     }
 
-    public Lecture(String courseName, Teacher teacher) {
+    public Lecture(String courseName, String group, Teacher teacher) {
         this.courseName = courseName;
         this.teacher = teacher;
         this.isPractical = true;
+        this.group = group;
     }
 
     public Lecture(Lecture lecture) {
         this.courseName = lecture.courseName;
         this.professor = lecture.professor;
         this.teacher = lecture.teacher;
+        this.group = lecture.group;
         this.isPractical = lecture.isPractical;
         this.stage = lecture.stage;
         this.startTime = lecture.startTime;
@@ -86,5 +89,11 @@ public class Lecture {
         isPractical = practical;
     }
 
+    public String getGroup() {
+        return group;
+    }
 
+    public void setGroup(String group) {
+        this.group = group;
+    }
 }

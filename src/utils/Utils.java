@@ -48,6 +48,7 @@ public class Utils {
                 }
                 teachers.add(new Teacher(currentTeacher.getString("name"),
                         currentTeacher.getString("course_name"),
+                        currentTeacher.getBoolean("in_lab"),
                         periods,
                         groups
                 ));
@@ -76,8 +77,10 @@ public class Utils {
             for (int i = 0; i < practicalLecturesJSONArray.length(); i++) {
                 JSONObject currentLecture = practicalLecturesJSONArray.getJSONObject(i);
                 for (Teacher teacher : teachers) {
-                    if (teacher.getCourseName().equalsIgnoreCase(currentLecture.getString("name"))) {
-                        practicalLectures.add(new Lecture(currentLecture.getString("name"), teacher));
+                    for (String group : teacher.getGroups()) {
+                        if (teacher.getCourseName().equalsIgnoreCase(currentLecture.getString("name"))) {
+                            practicalLectures.add(new Lecture(currentLecture.getString("name"), group, teacher));
+                        }
                     }
                 }
             }

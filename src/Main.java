@@ -13,9 +13,9 @@ public class Main {
             System.out.println(day.getDayName());
             for (Lecture lecture : day.getLectures()) {
                 if (lecture.isPractical()) {
-                    System.out.print(lecture.getCourseName() + " _ " + lecture.getTeacher().getName() + "\n");
+                    System.out.println(lecture.getCourseName() + " _ " + lecture.getTeacher().getName() + "_" + lecture.getStartTime() + " -> " + lecture.getEndTime());
                 } else {
-                    System.out.print(lecture.getCourseName() + " * " + lecture.getProfessor().getName() + "\n");
+                    System.out.println(lecture.getCourseName() + " * " + lecture.getProfessor().getName() + "_" + lecture.getStartTime() + " -> " + lecture.getEndTime());
                 }
             }
             System.out.println();

@@ -2,16 +2,18 @@ package models;
 
 import java.util.ArrayList;
 
-public class Teacher  {
+public class Teacher {
 
     private String name;
     private String courseName;
+    private boolean isInLab;
     private ArrayList<Period> availabilityPeriods;
     private ArrayList<String> groups;
 
-    public Teacher(String name, String courseName, ArrayList<Period> availabilityPeriods, ArrayList<String> groups) {
+    public Teacher(String name, String courseName, boolean isInLab, ArrayList<Period> availabilityPeriods, ArrayList<String> groups) {
         this.name = name;
         this.courseName = courseName;
+        this.isInLab = isInLab;
         this.availabilityPeriods = availabilityPeriods;
         this.groups = groups;
     }
@@ -46,5 +48,13 @@ public class Teacher  {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public boolean isInLab() {
+        return isInLab;
+    }
+
+    public void setInLab(boolean inLab) {
+        isInLab = inLab;
     }
 }
