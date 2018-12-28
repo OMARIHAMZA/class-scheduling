@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Schedule implements Comparable<Schedule> {
@@ -9,6 +8,7 @@ public class Schedule implements Comparable<Schedule> {
     private ArrayList<Day> days = new ArrayList<>();
     private int cost;
     private PriorityQueue<Schedule> schedules = new PriorityQueue<>();
+    public int counter = 0;
 
     private Resources resources;
 
@@ -30,13 +30,17 @@ public class Schedule implements Comparable<Schedule> {
 
         while (!isComplete(currentSchedule)) {
             for (Lecture lecture : resources.getLectures()) {
-                if (calculateCost(currentSchedule, lecture, currentDay, currentPosition) >= 0) {
-                    Lecture tempLecture = new Lecture(lecture);
-                    tempLecture.setStartTime(8 + (currentPosition * 2));
-                    tempLecture.setEndTime(tempLecture.getStartTime() + 2);
-                    tempLecture.setStage(getNextStage(currentSchedule, tempLecture.isPractical()));
-                    currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
-                    schedules.add(currentSchedule);
+                Stage mStage = getNextStage(currentSchedule, lecture, currentDay, currentPosition, lecture.isPractical());
+                if (mStage != null) {
+                    if (calculateCost(currentSchedule, lecture, currentDay, currentPosition) >= 0) {
+                        Lecture tempLecture = new Lecture(lecture);
+                        tempLecture.setStartTime(8 + (currentPosition * 2));
+                        tempLecture.setEndTime(tempLecture.getStartTime() + 2);
+                        tempLecture.setStage(mStage);
+                        currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
+                        counter++;
+                        schedules.add(currentSchedule);
+                    }
                 }
             }
             if (currentDay < 5 && currentPosition < 4) {
@@ -115,37 +119,67 @@ public class Schedule implements Comparable<Schedule> {
 
     private boolean checkTimeConflict(Schedule currentSchedule, Lecture newLecture, int currentDay, int currentPosition) {
         try {
-            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
-            int startTime = 8 + (currentPosition * 2);
-            int endTime = startTime + 2;
-            if (currentDay == 4) {
-                System.out.println("FUCK");
-            }
-            if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
-                    && (currentLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
-                    || currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup()))) {
-                if ((currentLecture.getStartTime() < endTime
-                        && currentLecture.getStartTime() >= startTime)
-                        || (currentLecture.getEndTime() > startTime
-                        && currentLecture.getEndTime() <= endTime)) {
-                    return true;
-                }
-            } else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
-                if ((currentLecture.getStartTime() < endTime
-                        && currentLecture.getStartTime() >= startTime)
-                        || (currentLecture.getEndTime() > startTime
-                        && currentLecture.getEndTime() <= endTime)) {
-                    return true;
-                }
-            } else if (currentLecture.isPractical() != newLecture.isPractical()) {
-                if ((currentLecture.getStartTime() < endTime
-                        && currentLecture.getStartTime() >= startTime)
-                        || (currentLecture.getEndTime() > startTime
-                        && currentLecture.getEndTime() <= endTime)) {
-                    return true;
-                }
-            }
+            for (Lecture currentLecture : currentSchedule.getDays().get(currentDay).getLectures()) {
+                //            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
+                int startTime = 8 + (currentPosition * 2);
+                int endTime = startTime + 2;
+                if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
+                        && (currentLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
+                        || currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup()))) {
 
+                    if ((currentLecture.getStartTime() < endTime
+                            && currentLecture.getStartTime() >= startTime)
+                            || (currentLecture.getEndTime() > startTime
+                            && currentLecture.getEndTime() <= endTime)) {
+                        return true;
+                    }
+                } else if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()) {
+                    if (!currentLecture.getTeacher().isInLab()) {
+                        String labGroup1 = "3", labGroup2 = "4";
+                        if (currentLecture.getGroup().equalsIgnoreCase("1")) {
+                            labGroup1 = "1";
+                            labGroup2 = "2";
+                        }
+                        if (newLecture.getGroup().equalsIgnoreCase(labGroup1) || newLecture.getGroup().equalsIgnoreCase(labGroup2)) {
+                            if ((currentLecture.getStartTime() < endTime
+                                    && currentLecture.getStartTime() >= startTime)
+                                    || (currentLecture.getEndTime() > startTime
+                                    && currentLecture.getEndTime() <= endTime)) {
+                                return true;
+                            }
+                        }
+
+                    } else if (!newLecture.getTeacher().isInLab()) {
+                        String labGroup1 = "3", labGroup2 = "4";
+                        if (newLecture.getGroup().equalsIgnoreCase("1")) {
+                            labGroup1 = "1";
+                            labGroup2 = "2";
+                        }
+                        if (currentLecture.getGroup().equalsIgnoreCase(labGroup1) || currentLecture.getGroup().equalsIgnoreCase(labGroup2)) {
+                            if ((currentLecture.getStartTime() < endTime
+                                    && currentLecture.getStartTime() >= startTime)
+                                    || (currentLecture.getEndTime() > startTime
+                                    && currentLecture.getEndTime() <= endTime)) {
+                                return true;
+                            }
+                        }
+                    }
+                } else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
+                    if ((currentLecture.getStartTime() < endTime
+                            && currentLecture.getStartTime() >= startTime)
+                            || (currentLecture.getEndTime() > startTime
+                            && currentLecture.getEndTime() <= endTime)) {
+                        return true;
+                    }
+                } else if (currentLecture.isPractical() != newLecture.isPractical()) {
+                    if ((currentLecture.getStartTime() < endTime
+                            && currentLecture.getStartTime() >= startTime)
+                            || (currentLecture.getEndTime() > startTime
+                            && currentLecture.getEndTime() <= endTime)) {
+                        return true;
+                    }
+                }
+            }
         } catch (Exception ignored) {
 
         }
@@ -171,8 +205,35 @@ public class Schedule implements Comparable<Schedule> {
         return false;
     }
 
-    private Stage getNextStage(Schedule schedule, boolean isPractical) {
-        return resources.getStages().get(0);
+    private Stage getNextStage(Schedule schedule, Lecture mLecture, int currentDay, int currentPosition, boolean isPractical) {
+        int startTime = 8 + (currentPosition * 2);
+        int endTime = startTime + 2;
+        if (isPractical && mLecture.getTeacher().isInLab()) {
+            for (Stage stage : resources.getLabs()) {
+                boolean foundMatch = false;
+                for (Lecture lecture : schedule.getDays().get(currentDay).getLectures()) {
+                    if (lecture.getStartTime() == startTime
+                            && lecture.getEndTime() == endTime
+                            && lecture.getStage().getName().equals(stage.getName())) {
+                        foundMatch = true;
+                    }
+                }
+                if (!foundMatch) return stage;
+            }
+        } else {
+            for (Stage stage : resources.getStages()) {
+                boolean foundMatch = false;
+                for (Lecture lecture : schedule.getDays().get(currentDay).getLectures()) {
+                    if (lecture.getStartTime() == startTime
+                            && lecture.getEndTime() == endTime
+                            && lecture.getStage().getName().equals(stage.getName())) {
+                        foundMatch = true;
+                    }
+                }
+                if (!foundMatch) return stage;
+            }
+        }
+        return null;
     }
 
     private Lecture getNextLecture(int currentDay, int currentPosition, Schedule schedule) {
@@ -250,6 +311,14 @@ public class Schedule implements Comparable<Schedule> {
     @Override
     public int compareTo(Schedule o) {
         return Integer.compare(this.getCost(), o.getCost());
+    }
+
+    public PriorityQueue<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(PriorityQueue<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }
 

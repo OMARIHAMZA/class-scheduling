@@ -57,13 +57,8 @@
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": 10,
-          "end_time": 14
-        },
-        {
-          "day_name": "monday",
           "start_time": 8,
-          "end_time": 12
+          "end_time": 10
         }
       ]
     },
@@ -72,13 +67,8 @@
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": 10,
+          "start_time": 12,
           "end_time": 14
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 12
         }
       ]
     },
@@ -88,11 +78,6 @@
         {
           "day_name": "monday",
           "start_time": 10,
-          "end_time": 14
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
           "end_time": 12
         }
       ]
@@ -102,8 +87,8 @@
       "periods": [
         {
           "day_name": "monday",
-          "start_time": 10,
-          "end_time": 14
+          "start_time": 8,
+          "end_time": 10
         }
       ]
     },
@@ -112,12 +97,7 @@
       "periods": [
         {
           "day_name": "wednesday",
-          "start_time": 10,
-          "end_time": 14
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 10,
+          "start_time": 12,
           "end_time": 14
         }
       ]
@@ -128,7 +108,7 @@
         {
           "day_name": "wednesday",
           "start_time": 8,
-          "end_time": 12
+          "end_time": 10
         }
       ]
     }
@@ -139,36 +119,14 @@
       "course_name": "Software Engineering 1",
       "in_lab": false,
       "groups": [
-        "1",
         "2",
-        "3",
-        "4"
+        "1"
       ],
       "periods": [
         {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
           "day_name": "tuesday",
           "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 16
+          "end_time": 12
         }
       ]
     },
@@ -177,35 +135,12 @@
       "course_name": "Economy",
       "in_lab": false,
       "groups": [
-        "1",
-        "2",
-        "3",
-        "4"
+        "1"
       ],
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
+          "start_time": 14,
           "end_time": 16
         }
       ]
@@ -216,74 +151,17 @@
       "in_lab": false,
       "groups": [
         "1",
-        "2",
-        "3",
-        "4"
+        "2"
       ],
       "periods": [
         {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
           "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
+          "start_time": 12,
           "end_time": 16
         }
       ]
     },
-    {
-      "name": "Ahmad Hussien",
-      "course_name": "Intelligent Search Algorithms",
-      "in_lab": true,
-      "groups": [
-        "1",
-        "3"
-      ],
-      "periods": [
-        {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 16
-        }
-      ]
-    },
+
     {
       "name": "Islam Khelan",
       "course_name": "Intelligent Search Algorithms",
@@ -294,187 +172,14 @@
       ],
       "periods": [
         {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
           "day_name": "tuesday",
           "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 16
-        }
-      ]
-    },
-    {
-      "name": "Boushra Dawood",
-      "course_name": "Operating Systems 1",
-      "in_lab": true,
-      "groups": [
-        "1",
-        "3"
-      ],
-      "periods": [
-        {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 16
-        }
-      ]
-    },
-    {
-      "name": "Safaa Kiwan",
-      "course_name": "Operating Systems 1",
-      "in_lab": true,
-      "groups": [
-        "2",
-        "4"
-      ],
-      "periods": [
-        {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 16
-        }
-      ]
-    },
-    {
-      "name": "Rawan Koroni",
-      "course_name": "Database 2",
-      "in_lab": true,
-      "groups": [
-        "1",
-        "3"
-      ],
-      "periods": [
-        {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 16
-        }
-      ]
-    },
-    {
-      "name": "Abdul Badee Morad",
-      "course_name": "Database 2",
-      "in_lab": true,
-      "groups": [
-        "2",
-        "4"
-      ],
-      "periods": [
-        {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "thursday",
-          "start_time": 8,
-          "end_time": 16
+          "end_time": 12
         }
       ]
     }
   ],
   "stages": [
-    {
-      "name": "12"
-    },
-    {
-      "name": "16"
-    },
-    {
-      "name": "23"
-    },
     {
       "name": "25"
     }

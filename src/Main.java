@@ -13,9 +13,21 @@ public class Main {
             System.out.println(day.getDayName());
             for (Lecture lecture : day.getLectures()) {
                 if (lecture.isPractical()) {
-                    System.out.println(lecture.getCourseName() + " _ " + lecture.getTeacher().getName() + "_" + lecture.getStartTime() + " -> " + lecture.getEndTime());
+                    if (!lecture.getTeacher().isInLab()){
+                        System.out.println(lecture.getCourseName()
+                                + " _ " + lecture.getTeacher().getName()
+                                + "_" + lecture.getStartTime() + " -> " + lecture.getEndTime()
+                                + " | Lab: " + lecture.getStage().getName()
+                                + " | Group: " + lecture.getGroup());
+                    }else{
+                        System.out.println(lecture.getCourseName()
+                                + " _ " + lecture.getTeacher().getName()
+                                + "_" + lecture.getStartTime() + " -> " + lecture.getEndTime()
+                                + " | Lab: " + lecture.getStage().getName()
+                                + " | LabGroup: " + lecture.getGroup());
+                    }
                 } else {
-                    System.out.println(lecture.getCourseName() + " * " + lecture.getProfessor().getName() + "_" + lecture.getStartTime() + " -> " + lecture.getEndTime());
+                    System.out.println(lecture.getCourseName() + " * " + lecture.getProfessor().getName() + "_" + lecture.getStartTime() + " -> " + lecture.getEndTime()+ " | " + lecture.getStage().getName());
                 }
             }
             System.out.println();

@@ -91,10 +91,15 @@ public class Utils {
                 stages.add(new Stage(stagesJSONArray.getJSONObject(i).getString("name"), false));
             }
 
+            ArrayList<Stage> labs = new ArrayList<>();
+            JSONArray labsJSONArray = jsonObject.getJSONArray("labs");
+            for (int i = 0; i < labsJSONArray.length(); i++) {
+                labs.add(new Stage(labsJSONArray.getJSONObject(i).getString("name"), true));
+            }
 
             lectures.addAll(practicalLectures);
 
-            return new Resources(lectures, professors, stages);
+            return new Resources(lectures, professors, stages, labs);
 
 
         } catch (Exception e) {

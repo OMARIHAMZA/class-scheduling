@@ -7,11 +7,21 @@ public class Resources {
     private ArrayList<Lecture> lectures;
     private ArrayList<Professor> professors;
     private ArrayList<Stage> stages;
+    private ArrayList<Stage> labs;
 
-    public Resources(ArrayList<Lecture> lectures, ArrayList<Professor> professors, ArrayList<Stage> stages) {
+    public Resources(ArrayList<Lecture> lectures, ArrayList<Professor> professors, ArrayList<Stage> stages, ArrayList<Stage> labs) {
         this.lectures = lectures;
         this.professors = professors;
         this.stages = stages;
+        this.labs = labs;
+    }
+
+    public ArrayList<Stage> getLabs() {
+        return labs;
+    }
+
+    public void setLabs(ArrayList<Stage> labs) {
+        this.labs = labs;
     }
 
     public ArrayList<Lecture> getLectures() {
