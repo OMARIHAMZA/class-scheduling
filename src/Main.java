@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Schedule schedule = new Schedule(Utils.readDataFromFile("input.json"));
-        schedule = schedule.generateSchedule();
+        schedule = schedule.generateSchedule(schedule, 0, 0);
         for (Day day : schedule.getDays()) {
             System.out.println("-------------");
             System.out.println(day.getDayName());

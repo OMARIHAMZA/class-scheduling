@@ -13,6 +13,7 @@ public class Lecture {
     public Lecture(String courseName, Professor professor) {
         this.courseName = courseName;
         this.professor = professor;
+        this.group = "_";
     }
 
     public Lecture(String courseName, String group, Teacher teacher) {

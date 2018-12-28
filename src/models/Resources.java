@@ -4,24 +4,22 @@ import java.util.ArrayList;
 
 public class Resources {
 
-    private ArrayList<Lecture> theoreticalLectures;
-    private ArrayList<Lecture> practicalLectures;
+    private ArrayList<Lecture> lectures;
     private ArrayList<Professor> professors;
     private ArrayList<Stage> stages;
 
-    public Resources(ArrayList<Lecture> theoreticalLectures, ArrayList<Lecture> practicalLectures, ArrayList<Professor> professors, ArrayList<Stage> stages) {
-        this.theoreticalLectures = theoreticalLectures;
-        this.practicalLectures = practicalLectures;
+    public Resources(ArrayList<Lecture> lectures, ArrayList<Professor> professors, ArrayList<Stage> stages) {
+        this.lectures = lectures;
         this.professors = professors;
         this.stages = stages;
     }
 
-    public ArrayList<Lecture> getTheoreticalLectures() {
-        return theoreticalLectures;
+    public ArrayList<Lecture> getLectures() {
+        return lectures;
     }
 
-    public void setTheoreticalLectures(ArrayList<Lecture> theoreticalLectures) {
-        this.theoreticalLectures = theoreticalLectures;
+    public void setLectures(ArrayList<Lecture> lectures) {
+        this.lectures = lectures;
     }
 
     public ArrayList<Professor> getProfessors() {
@@ -38,13 +36,5 @@ public class Resources {
 
     public void setStages(ArrayList<Stage> stages) {
         this.stages = stages;
-    }
-
-    public ArrayList<Lecture> getPracticalLectures() {
-        return practicalLectures;
-    }
-
-    public void setPracticalLectures(ArrayList<Lecture> practicalLectures) {
-        this.practicalLectures = practicalLectures;
     }
 }

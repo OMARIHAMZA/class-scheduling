@@ -91,7 +91,10 @@ public class Utils {
                 stages.add(new Stage(stagesJSONArray.getJSONObject(i).getString("name"), false));
             }
 
-            return new Resources(lectures, practicalLectures, professors, stages);
+
+//            lectures.addAll(practicalLectures);
+
+            return new Resources(lectures, professors, stages);
 
 
         } catch (Exception e) {
