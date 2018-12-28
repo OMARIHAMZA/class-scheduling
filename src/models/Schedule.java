@@ -95,16 +95,11 @@ public class Schedule {
             periods = currentLecture.getProfessor().getAvailabilityPeriods();
         }
         for (Period period : periods) {
-            try {
-                if (period.getDayName().equalsIgnoreCase(days.get(currentDay).getDayName())) {
-                    if (period.getStartTime() <= (float) (8 + (currentPosition * 2))
-                            && period.getEndTime() >= (10 + (currentPosition * 2))) {
-                        return true;
-                    }
+            if (period.getDayName().equalsIgnoreCase(days.get(currentDay).getDayName())) {
+                if (period.getStartTime() <= (float) (8 + (currentPosition * 2))
+                        && period.getEndTime() >= (10 + (currentPosition * 2))) {
+                    return true;
                 }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(currentDay + "_____________");
-                return false;
             }
         }
         return false;
@@ -148,7 +143,6 @@ public class Schedule {
             for (int i = 0; i < day.getLectures().size(); i++) {
                 Lecture mLecture = day.getLectures().get(i);
                 if (mLecture.isPractical() == lecture.isPractical()
-                        && mLecture.getGroup().equalsIgnoreCase(lecture.getGroup())
                         && mLecture.getCourseName().equalsIgnoreCase(lecture.getCourseName())
                         && mLecture.getTeacher().getName().equalsIgnoreCase(lecture.getTeacher().getName())) {
                     return true;
