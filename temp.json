@@ -94,9 +94,8 @@
         {
           "day_name": "sunday",
           "start_time": 8,
-          "end_time": 16
+          "end_time": 12
         }
-
       ]
     },
     {
@@ -104,36 +103,39 @@
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
+          "start_time": 12,
+          "end_time": 14
         }
-
-
       ]
     },
     {
       "name": "Salah Dawahji",
       "periods": [
-
         {
           "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
+          "start_time": 10,
+          "end_time": 12
         }
-
       ]
     },
     {
       "name": "Bassel Al Khatib",
       "periods": [
-
         {
           "day_name": "monday",
           "start_time": 8,
-          "end_time": 16
+          "end_time": 12
         }
-
-
+      ]
+    },
+    {
+      "name": "Wassim Ahmad",
+      "periods": [
+        {
+          "day_name": "wednesday",
+          "start_time": 12,
+          "end_time": 14
+        }
       ]
     },
     {
@@ -142,76 +144,38 @@
         {
           "day_name": "sunday",
           "start_time": 8,
-          "end_time": 16
+          "end_time": 10
         }
-
       ]
     },
     {
       "name": "Maisaa Abo Kassem",
       "periods": [
         {
-          "day_name": "Wednesday",
+          "day_name": "wednesday",
           "start_time": 8,
-          "end_time": 16
+          "end_time": 12
         }
-
-
       ]
     },
     {
       "name": "Ammar Jokhadar",
       "periods": [
         {
-          "day_name": "sunday",
+          "day_name": "wednesday",
           "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Thursday",
-          "start_time": 8,
-          "end_time": 16
+          "end_time": 10
         }
-
       ]
     },
     {
       "name": "Madlin Abood",
       "periods": [
-
         {
-          "day_name": "Wednesday",
+          "day_name": "wednesday",
           "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Thursday",
-          "start_time": 8,
-          "end_time": 16
+          "end_time": 10
         }
-
-      ]
-    },
-    {
-      "name": "Wassim Ahmad",
-      "periods": [
-
-        {
-          "day_name": "Wednesday",
-          "start_time": 11,
-          "end_time": 16
-        },
-        {
-          "day_name": "Thursday",
-          "start_time": 8,
-          "end_time": 16
-        }
-
       ]
     }
   ],
@@ -228,9 +192,8 @@
         {
           "day_name": "tuesday",
           "start_time": 8,
-          "end_time": 16
+          "end_time": 12
         }
-
       ]
     },
     {
@@ -243,30 +206,9 @@
       "periods": [
         {
           "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Thursday",
-          "start_time": 8,
+          "start_time": 14,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -274,17 +216,15 @@
       "course_name": "Compilers",
       "in_lab": false,
       "groups": [
-        "G1S",
-        "G2S"
+        "1S",
+        "2S"
       ],
       "periods": [
-
         {
           "day_name": "monday",
-          "start_time": 8,
+          "start_time": 12,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -292,17 +232,15 @@
       "course_name": "Intelligent Search Algorithms",
       "in_lab": true,
       "groups": [
-        "1S",
-        "3S"
+        "1",
+        "3"
       ],
       "periods": [
-
         {
           "day_name": "tuesday",
           "start_time": 12,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -310,17 +248,15 @@
       "course_name": "Intelligent Search Algorithms",
       "in_lab": true,
       "groups": [
-        "2S",
-        "4S"
+        "2",
+        "4"
       ],
       "periods": [
-
         {
           "day_name": "tuesday",
           "start_time": 8,
           "end_time": 12
         }
-
       ]
     },
     {
@@ -332,13 +268,11 @@
         "3"
       ],
       "periods": [
-
         {
           "day_name": "tuesday",
           "start_time": 8,
-          "end_time": 16
+          "end_time": 12
         }
-
       ]
     },
     {
@@ -346,17 +280,15 @@
       "course_name": "Operating Systems 1",
       "in_lab": true,
       "groups": [
-        "2S",
-        "4S"
+        "2",
+        "4"
       ],
       "periods": [
-
         {
           "day_name": "tuesday",
-          "start_time": 8,
+          "start_time": 12,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -364,16 +296,15 @@
       "course_name": "Database 2",
       "in_lab": true,
       "groups": [
-        "1S",
-        "3S"
+        "1",
+        "3"
       ],
       "periods": [
         {
           "day_name": "tuesday",
-          "start_time": 8,
+          "start_time": 12,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -381,16 +312,16 @@
       "course_name": "Database 2",
       "in_lab": true,
       "groups": [
-        "2S",
-        "4S"
+        "2",
+        "4"
       ],
       "periods": [
+
         {
           "day_name": "tuesday",
-          "start_time": 8,
+          "start_time": 12,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -398,17 +329,15 @@
       "course_name": "Compilers",
       "in_lab": false,
       "groups": [
-        "G2A",
-        "G1A"
+        "2A",
+        "1A"
       ],
       "periods": [
-
         {
           "day_name": "monday",
-          "start_time": 8,
+          "start_time": 12,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -421,31 +350,10 @@
       ],
       "periods": [
         {
-          "day_name": "sunday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
           "day_name": "monday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Thursday",
-          "start_time": 8,
+          "start_time": 12,
           "end_time": 16
         }
-
       ]
     },
     {
@@ -458,42 +366,28 @@
         "1A"
       ],
       "periods": [
-
-        {
-          "day_name": "tuesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Wednesday",
-          "start_time": 8,
-          "end_time": 16
-        },
-        {
-          "day_name": "Thursday",
-          "start_time": 8,
-          "end_time": 16
-        }
-
-      ]
-    },
-    {
-      "name": "Zeina Dallal",
-      "course_name": "Intelligent Search Algorithms",
-      "in_lab": true,
-      "groups": [
-        "G3A",
-        "G2A",
-        "G1A"
-      ],
-      "periods": [
-
         {
           "day_name": "tuesday",
           "start_time": 8,
           "end_time": 14
         }
-
+      ]
+    },
+    {
+      "name": "Teacher_ISA_AI",
+      "course_name": "Intelligent Search Algorithms",
+      "in_lab": true,
+      "groups": [
+        "3A",
+        "2A",
+        "1A"
+      ],
+      "periods": [
+        {
+          "day_name": "tuesday",
+          "start_time": 8,
+          "end_time": 14
+        }
       ]
     },
     {
@@ -506,13 +400,11 @@
         "1A"
       ],
       "periods": [
-
         {
           "day_name": "tuesday",
           "start_time": 8,
-          "end_time": 16
+          "end_time": 14
         }
-
       ]
     }
   ],

@@ -3,8 +3,6 @@ import models.Lecture;
 import models.Schedule;
 import utils.Utils;
 
-import java.util.concurrent.TimeUnit;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -13,7 +11,6 @@ public class Main {
         schedule = schedule.generateSchedule(schedule, 0, 0);
         long endTime = System.currentTimeMillis();
         System.out.println("Time = "+(endTime-startTime));
-        System.out.println("size = "+schedule.getSchedules().size());
         System.out.println("counter = "+schedule.counter);
         for (Day day : schedule.getDays()) {
             System.out.println("-------------");

@@ -9,6 +9,7 @@ public class Lecture {
     private boolean isPractical = false;
     private Stage stage;
     private float startTime, endTime;
+    private int LectuerCount;
 
     public Lecture(String courseName, Professor professor, String group) {
         this.courseName = courseName;
@@ -96,5 +97,13 @@ public class Lecture {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public int getLectuerCount() {
+        return LectuerCount;
+    }
+
+    public void setLectuerCount(int lectuerCount) {
+        LectuerCount = lectuerCount;
     }
 }

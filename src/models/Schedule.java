@@ -81,9 +81,6 @@ public class Schedule implements Comparable<Schedule> {
                 }
             }
 
-            for (Lecture lecture:day.getLectures()){
-
-            }
 
         }
 
@@ -118,7 +115,9 @@ public class Schedule implements Comparable<Schedule> {
                     //Theoretical
                     if (oldLecture.getProfessor().getName().equalsIgnoreCase(newLecture.getProfessor().getName())
                             && oldLecture.getCourseName().equalsIgnoreCase(newLecture.getCourseName())) {
-                        return false;
+                        if (oldLecture.getLectuerCount() > 0 && oldLecture.getLectuerCount() != newLecture.getLectuerCount())
+                            return true;
+                         return false;
                     }
                 } else if (oldLecture.isPractical() == newLecture.isPractical() && oldLecture.isPractical()) {
                     //Practical
@@ -139,20 +138,26 @@ public class Schedule implements Comparable<Schedule> {
     private boolean checkTimeConflict(Schedule currentSchedule, Lecture newLecture, int currentDay, int currentPosition) {
         try {
             for (Lecture currentLecture : currentSchedule.getDays().get(currentDay).getLectures()) {
-                //            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
+                //   Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
                 int startTime = 8 + (currentPosition);
                 int endTime = startTime + 2;
 
 
+                /** one in lab or two in lab*/
                 if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
                         && (!currentLecture.getTeacher().isInLab() || !newLecture.getTeacher().isInLab())) {
                     if (!currentLecture.getTeacher().isInLab()) {
-                        String labGroup1 = "3", labGroup2 = "4";
-                        if (currentLecture.getGroup().equalsIgnoreCase("1")) {
-                            labGroup1 = "1";
-                            labGroup2 = "2";
+                        String labGroup1 = "3S", labGroup2 = "4S";
+                        //TODO G1 or G2
+                        String sub=currentLecture.getGroup().substring(0,2);
+
+                        if (sub.equalsIgnoreCase("G1")) {
+
+                            labGroup1 = "1S";
+                            labGroup2 = "2S";
                         }
                         if (newLecture.getGroup().equalsIgnoreCase(labGroup1) || newLecture.getGroup().equalsIgnoreCase(labGroup2)) {
+
                             if ((currentLecture.getStartTime() < endTime
                                     && currentLecture.getStartTime() >= startTime)
                                     || (currentLecture.getEndTime() > startTime
@@ -161,22 +166,32 @@ public class Schedule implements Comparable<Schedule> {
                             }
                         }
 
-                    } else if (!newLecture.getTeacher().isInLab()) {
-                        String labGroup1 = "3", labGroup2 = "4";
-                        if (newLecture.getGroup().equalsIgnoreCase("1")) {
-                            labGroup1 = "1";
-                            labGroup2 = "2";
+                    }
+                    else if (!newLecture.getTeacher().isInLab()) {
+
+                        String labGroup1 = "3S", labGroup2 = "4S";
+                        //TODO 2
+                        String sub=newLecture.getGroup().substring(0,2);
+
+                        if (sub.equalsIgnoreCase("G1")) {
+                            labGroup1 = "1S";
+                            labGroup2 = "2S";
+
                         }
                         if (currentLecture.getGroup().equalsIgnoreCase(labGroup1) || currentLecture.getGroup().equalsIgnoreCase(labGroup2)) {
+
                             if ((currentLecture.getStartTime() < endTime
                                     && currentLecture.getStartTime() >= startTime)
                                     || (currentLecture.getEndTime() > startTime
                                     && currentLecture.getEndTime() <= endTime)) {
+
                                 return true;
                             }
                         }
                     }
-                } else if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
+                }
+                /** two practical teacher or group*/
+                if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
                         && (currentLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
                         || currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup()))) {
 
@@ -184,16 +199,21 @@ public class Schedule implements Comparable<Schedule> {
                             && currentLecture.getStartTime() >= startTime)
                             || (currentLecture.getEndTime() > startTime
                             && currentLecture.getEndTime() <= endTime)) {
+
                         return true;
                     }
-                } else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
+                }
+                /** two theoretical and same group*/
+                if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()
+                        &&currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup())) {
                     if ((currentLecture.getStartTime() < endTime
                             && currentLecture.getStartTime() >= startTime)
                             || (currentLecture.getEndTime() > startTime
                             && currentLecture.getEndTime() <= endTime)) {
                         return true;
                     }
-                } else if (currentLecture.isPractical() != newLecture.isPractical()) {
+                }
+                if (currentLecture.isPractical() != newLecture.isPractical()) {
                     if ((currentLecture.getStartTime() < endTime
                             && currentLecture.getStartTime() >= startTime)
                             || (currentLecture.getEndTime() > startTime
@@ -228,7 +248,7 @@ public class Schedule implements Comparable<Schedule> {
     }
 
     private Stage getNextStage(Schedule schedule, Lecture mLecture, int currentDay, int currentPosition, boolean isPractical) {
-        int startTime = 8 + (currentPosition * 2);
+        int startTime = 8 + (currentPosition);
         int endTime = startTime + 2;
         if (isPractical && mLecture.getTeacher().isInLab()) {
             for (Stage stage : resources.getLabs()) {
