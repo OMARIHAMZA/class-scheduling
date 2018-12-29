@@ -34,16 +34,15 @@ public class Schedule implements Comparable<Schedule> {
                 if (mStage != null) {
                     if (calculateCost(currentSchedule, lecture, currentDay, currentPosition) >= 0) {
                         Lecture tempLecture = new Lecture(lecture);
-                        tempLecture.setStartTime(8 + (currentPosition * 2));
+                        tempLecture.setStartTime(8 + (currentPosition ));
                         tempLecture.setEndTime(tempLecture.getStartTime() + 2);
                         tempLecture.setStage(mStage);
                         currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
-                        counter++;
                         schedules.add(currentSchedule);
                     }
                 }
             }
-            if (currentDay < 5 && currentPosition < 4) {
+            if (currentDay < 5 && currentPosition < 7) {
                 currentPosition += 1;
             } else if (currentDay < 4) {
                 currentDay += 1;
@@ -121,7 +120,7 @@ public class Schedule implements Comparable<Schedule> {
         try {
             for (Lecture currentLecture : currentSchedule.getDays().get(currentDay).getLectures()) {
                 //            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
-                int startTime = 8 + (currentPosition * 2);
+                int startTime = 8 + (currentPosition );
                 int endTime = startTime + 2;
 
 
@@ -202,8 +201,8 @@ public class Schedule implements Comparable<Schedule> {
         }
         for (Period period : periods) {
             if (period.getDayName().equalsIgnoreCase(days.get(currentDay).getDayName())) {
-                if (period.getStartTime() <= (float) (8 + (currentPosition * 2))
-                        && period.getEndTime() >= (10 + (currentPosition * 2))) {
+                if (period.getStartTime() <= (float) (8 + (currentPosition )*1.0)
+                        && period.getEndTime() >= (10 + (currentPosition ))*1.0) {
                     return true;
                 }
             }
