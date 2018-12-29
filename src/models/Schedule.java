@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 
 public class Schedule implements Comparable<Schedule> {
@@ -23,6 +24,7 @@ public class Schedule implements Comparable<Schedule> {
         days.add(new Day("Tuesday"));
         days.add(new Day("Wednesday"));
         days.add(new Day("Thursday"));
+
     }
 
 
@@ -30,14 +32,16 @@ public class Schedule implements Comparable<Schedule> {
 
         while (!isComplete(currentSchedule)) {
             for (Lecture lecture : resources.getLectures()) {
+                counter++;
                 Stage mStage = getNextStage(currentSchedule, lecture, currentDay, currentPosition, lecture.isPractical());
                 if (mStage != null) {
-                    if (calculateCost(currentSchedule, lecture, currentDay, currentPosition) >= 0) {
+                    if (constraints(currentSchedule, lecture, currentDay, currentPosition)) {
                         Lecture tempLecture = new Lecture(lecture);
-                        tempLecture.setStartTime(8 + (currentPosition ));
+                        tempLecture.setStartTime(8 + (currentPosition));
                         tempLecture.setEndTime(tempLecture.getStartTime() + 2);
                         tempLecture.setStage(mStage);
                         currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
+                        currentSchedule.cost = calculateCost(currentSchedule);
                         schedules.add(currentSchedule);
                     }
                 }
@@ -54,8 +58,37 @@ public class Schedule implements Comparable<Schedule> {
                 return null;
             }
         }
-
         return currentSchedule;
+    }
+
+    private int calculateCost(Schedule currentSchedule) {
+        int cost = 0;
+        for (Day day : currentSchedule.days) {
+            if (day.getLectures().size() == 0) { //Empty day
+                cost -= 10;
+            }
+            float end = 0;
+            for (Lecture lecture : day.getLectures()) {
+                if (lecture.getStartTime() > end) { //gap between lectures
+                    cost += 5;
+                }
+                end = lecture.getEndTime();
+            }
+            for (Lecture lecture : day.getLectures()) { // exist practical in more day
+                if (lecture.isPractical()) {
+                    cost++;
+                    break;
+                }
+            }
+
+            for (Lecture lecture:day.getLectures()){
+
+            }
+
+        }
+
+
+        return cost;
     }
 
 
@@ -70,24 +103,11 @@ public class Schedule implements Comparable<Schedule> {
     }
 
 
-    private boolean lectureExists(Lecture currentLecture, int currentDay, int currentPosition) {
-        if (!currentLecture.isPractical()) return true;
-        Day mDay = days.get(currentDay);
-        for (Lecture lecture : mDay.getLectures()) {
-            if (lecture.getStartTime() == 8 + (currentPosition * 2)
-                    && lecture.getEndTime() == 10 + (currentPosition * 2)
-                    && !currentLecture.getTeacher().getName().equalsIgnoreCase(lecture.getTeacher().getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private int calculateCost(Schedule currentSchedule, Lecture newLecture, int currentDay, int currentPosition) {
+    private boolean constraints(Schedule currentSchedule, Lecture newLecture, int currentDay, int currentPosition) {
         int cost = 0;
 
         if (!isLecturerAvailable(newLecture, currentDay, currentPosition, newLecture.isPractical())) {
-            return -1;
+            return false;
         }
 
 
@@ -98,34 +118,34 @@ public class Schedule implements Comparable<Schedule> {
                     //Theoretical
                     if (oldLecture.getProfessor().getName().equalsIgnoreCase(newLecture.getProfessor().getName())
                             && oldLecture.getCourseName().equalsIgnoreCase(newLecture.getCourseName())) {
-                        return -1;
+                        return false;
                     }
                 } else if (oldLecture.isPractical() == newLecture.isPractical() && oldLecture.isPractical()) {
                     //Practical
                     if (oldLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
                             && oldLecture.getCourseName().equalsIgnoreCase(newLecture.getCourseName())
                             && oldLecture.getGroup().equalsIgnoreCase(newLecture.getGroup())) {
-                        return -1;
+                        return false;
                     }
                 }
             }
         }
 
-        if (checkTimeConflict(currentSchedule, newLecture, currentDay, currentPosition)) return -1;
+        if (checkTimeConflict(currentSchedule, newLecture, currentDay, currentPosition)) return false;
 
-        return cost;
+        return true;
     }
 
     private boolean checkTimeConflict(Schedule currentSchedule, Lecture newLecture, int currentDay, int currentPosition) {
         try {
             for (Lecture currentLecture : currentSchedule.getDays().get(currentDay).getLectures()) {
                 //            Lecture currentLecture = currentSchedule.getDays().get(currentDay).getLectures().get(currentSchedule.getDays().get(currentDay).getLectures().size() - 1);
-                int startTime = 8 + (currentPosition );
+                int startTime = 8 + (currentPosition);
                 int endTime = startTime + 2;
 
 
                 if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
-                    &&(!currentLecture.getTeacher().isInLab()||!newLecture.getTeacher().isInLab())) {
+                        && (!currentLecture.getTeacher().isInLab() || !newLecture.getTeacher().isInLab())) {
                     if (!currentLecture.getTeacher().isInLab()) {
                         String labGroup1 = "3", labGroup2 = "4";
                         if (currentLecture.getGroup().equalsIgnoreCase("1")) {
@@ -156,9 +176,7 @@ public class Schedule implements Comparable<Schedule> {
                             }
                         }
                     }
-                }
-
-                else if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
+                } else if (currentLecture.isPractical() == newLecture.isPractical() && newLecture.isPractical()
                         && (currentLecture.getTeacher().getName().equalsIgnoreCase(newLecture.getTeacher().getName())
                         || currentLecture.getGroup().equalsIgnoreCase(newLecture.getGroup()))) {
 
@@ -168,8 +186,7 @@ public class Schedule implements Comparable<Schedule> {
                             && currentLecture.getEndTime() <= endTime)) {
                         return true;
                     }
-                }
-                else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
+                } else if (currentLecture.isPractical() == newLecture.isPractical() && !newLecture.isPractical()) {
                     if ((currentLecture.getStartTime() < endTime
                             && currentLecture.getStartTime() >= startTime)
                             || (currentLecture.getEndTime() > startTime
@@ -201,8 +218,8 @@ public class Schedule implements Comparable<Schedule> {
         }
         for (Period period : periods) {
             if (period.getDayName().equalsIgnoreCase(days.get(currentDay).getDayName())) {
-                if (period.getStartTime() <= (float) (8 + (currentPosition )*1.0)
-                        && period.getEndTime() >= (10 + (currentPosition ))*1.0) {
+                if (period.getStartTime() <= (float) (8 + (currentPosition) * 1.0)
+                        && period.getEndTime() >= (10 + (currentPosition)) * 1.0) {
                     return true;
                 }
             }
@@ -241,56 +258,6 @@ public class Schedule implements Comparable<Schedule> {
         return null;
     }
 
-    private Lecture getNextLecture(int currentDay, int currentPosition, Schedule schedule) {
-       /* for (Lecture lecture : resources.getLectures()) {
-            if (!containsThoeriticalLecture(schedule, lecture)
-                    && isLecturerAvailable(lecture, currentDay, currentPosition, false)) {
-                return lecture;
-            }
-        }
-        for (Lecture lecture : resources.getLectures()) {
-            if (!containsPracticalLecture(schedule, lecture)
-                    && isLecturerAvailable(lecture, currentDay, currentPosition, true)) {
-                return lecture;
-            }
-        }*/
-        return null;
-    }
-
-    private boolean containsThoeriticalLecture(Schedule schedule, Lecture lecture) {
-        for (Day day : schedule.getDays()) {
-            for (int i = 0; i < day.getLectures().size(); i++) {
-                Lecture mLecture = day.getLectures().get(i);
-                if (mLecture.isPractical() == lecture.isPractical()
-                        && mLecture.getCourseName().equalsIgnoreCase(lecture.getCourseName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean containsPracticalLecture(Schedule schedule, Lecture lecture) {
-        for (Day day : schedule.getDays()) {
-            for (int i = 0; i < day.getLectures().size(); i++) {
-                Lecture mLecture = day.getLectures().get(i);
-                if (mLecture.isPractical() == lecture.isPractical()
-                        && mLecture.getCourseName().equalsIgnoreCase(lecture.getCourseName())
-                        && mLecture.getTeacher().getName().equalsIgnoreCase(lecture.getTeacher().getName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean containsStage(Schedule schedule, Stage stage, int currentDay, int currentPosition) {
-        return false;
-    }
-
-    /*private Lecture getLectureByPosition(int position) {
-        return resources.getTheoreticalLectures().get(position);
-    }*/
 
     public Resources getResources() {
         return resources;
@@ -326,44 +293,3 @@ public class Schedule implements Comparable<Schedule> {
         this.schedules = schedules;
     }
 }
-
-/* private Schedule generateSchedule(Schedule currentSchedule, int currentDay, int currentPosititon) {
-
-        Lecture mLecture = getNextLecture(currentDay, currentPosititon, currentSchedule);
-
-
-        while (mLecture == null) {
-            if (currentDay == 4) break;
-            if (currentPosititon == 4 && currentDay < 5) {
-                currentPosititon = 0;
-                currentDay += 1;
-            } else {
-                currentPosititon += 1;
-            }
-            mLecture = getNextLecture(currentDay, currentPosititon, currentSchedule);
-        }
-
-        while (mLecture != null) {
-            if (calculateCost(currentSchedule, mLecture, currentDay, currentPosititon) >= 0) {
-                Lecture tempLecture = new Lecture(mLecture);
-                tempLecture.setStartTime(8 + (currentPosititon * 2));
-                tempLecture.setEndTime(tempLecture.getStartTime() + 2);
-                tempLecture.setStage(getNextStage(currentSchedule, tempLecture.isPractical()));
-                currentSchedule.getDays().get(currentDay).getLectures().add(tempLecture);
-                currentPosititon += 1;
-                if (currentSchedule.getDays().get(currentDay).getLectures().size() == 4) {
-                    currentDay += 1;
-                    currentPosititon = 0;
-                }
-                generateSchedule(currentSchedule, currentDay, currentPosititon);
-                break;
-            }
-            mLecture = getNextLecture(currentDay, currentPosititon, currentSchedule);
-            if (mLecture == null && currentDay < 5) {
-                currentDay++;
-                currentPosititon = 0;
-                mLecture = getNextLecture(currentDay, currentPosititon, currentSchedule);
-            }
-        }
-        return currentSchedule;
-    }*/

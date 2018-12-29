@@ -69,7 +69,7 @@ public class Utils {
                 if (currentProfessor == null) {
                     throw new Exception("Professor: " + currentLecturerName + " not found! ");
                 }
-                lectures.add(new Lecture(currentLecture.getString("course_name"), currentProfessor));
+                lectures.add(new Lecture(currentLecture.getString("course_name"), currentProfessor,currentLecture.getString("group")));
             }
 
             ArrayList<Lecture> practicalLectures = new ArrayList<>();

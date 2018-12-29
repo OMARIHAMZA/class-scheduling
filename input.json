@@ -2,27 +2,33 @@
   "courses": [
     {
       "course_name": "Software Engineering 1",
-      "lecturer_name": "Saeed Abo Trab"
+      "lecturer_name": "Saeed Abo Trab",
+      "group": "SoftwareEngineering"
     },
     {
       "course_name": "Economy",
-      "lecturer_name": "Nawras Watfeh"
+      "lecturer_name": "Nawras Watfeh",
+      "group": "All"
     },
     {
       "course_name": "Compilers",
-      "lecturer_name": "Salah Dawahji"
+      "lecturer_name": "Salah Dawahji",
+      "group": "SoftwareEngineering"
     },
     {
       "course_name": "Intelligent Search Algorithms",
-      "lecturer_name": "Bassel Al Khatib"
+      "lecturer_name": "Bassel Al Khatib",
+      "group": "All"
     },
     {
       "course_name": "Operating Systems 1",
-      "lecturer_name": "Wassim Ahmad"
+      "lecturer_name": "Wassim Ahmad",
+      "group": "All"
     },
     {
       "course_name": "Database 2",
-      "lecturer_name": "Madlin Abood"
+      "lecturer_name": "Madlin Abood",
+      "group": "SoftwareEngineering"
     }
   ],
   "groups": [
@@ -59,6 +65,11 @@
           "day_name": "sunday",
           "start_time": 8,
           "end_time": 10
+        },
+        {
+          "day_name": "monday",
+          "start_time": 10,
+          "end_time": 15
         }
       ]
     },

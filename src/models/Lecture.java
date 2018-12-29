@@ -10,10 +10,10 @@ public class Lecture {
     private Stage stage;
     private float startTime, endTime;
 
-    public Lecture(String courseName, Professor professor) {
+    public Lecture(String courseName, Professor professor, String group) {
         this.courseName = courseName;
         this.professor = professor;
-        this.group = "_";
+        this.group = group;
     }
 
     public Lecture(String courseName, String group, Teacher teacher) {
